@@ -37,5 +37,5 @@ jobs:
       with:
         context: .
         push: true
-        tags: endi7/fastapi001:${{ github.ref }}
+        tags: endi7/fastapi001:${{ github.ref_name }}
 
