@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: fastapi
+      MYSQL_DATABASE: fastapi
+      MYSQL_USER: fastapi
+      MYSQL_PASSWORD: fastapi
+    ports:
+      - "3306:3306"
+  web:
+    image: fastapi06
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
