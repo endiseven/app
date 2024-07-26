@@ -2,6 +2,10 @@ name: CI/CD Pipeline
 
 on:
   push:
+    paths-ignore:
+      - 'app/.github/workflows/*' 
+      - '**.md' 
+      - '**.yml'
     branches:
       - main
   release:
