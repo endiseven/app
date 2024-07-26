@@ -6,7 +6,6 @@ import databases
 from pydantic import BaseModel
 from typing import List
 
-# Substitua estas variáveis pelos seus dados de conexão
 DATABASE_URL = "mysql+pymysql://fastapi:fastapi@db:3306/fastapi"
 
 Base = declarative_base()
@@ -18,7 +17,7 @@ class Character(Base):
     name = Column(String(255), index=True)
     story = Column(Text)
 
-# Configuração do SQLAlchemy
+# SQLAlchemy
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
@@ -33,7 +32,7 @@ def get_db_session():
     finally:
         db.close()
 
-# Modelos Pydantic
+# Pydantic
 class CharacterCreate(BaseModel):
     name: str
     story: str
@@ -59,7 +58,7 @@ async def shutdown():
 async def read_root():
     return {"Hello": "World"}
 
-# Operações CRUD
+# CRUD
 def create_character(db: Session, character: CharacterCreate):
     db_character = Character(name=character.name, story=character.story)
     db.add(db_character)
