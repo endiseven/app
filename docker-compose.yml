@@ -10,7 +10,7 @@ services:
     ports:
       - "3306:3306"
   web:
-    image: fastapi06
+    image: endi7/fastapi001
     ports:
       - "8000:8000"
     depends_on:
