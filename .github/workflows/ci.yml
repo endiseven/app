@@ -3,7 +3,8 @@ name: CI/CD Pipeline
 on:
   push:
     paths-ignore:
-      - 'app/.github/workflows/*' 
+      - 'app/.github/workflows/*'
+      - 'app/app/*' 
       - '**.md' 
       - '**.yml'
     branches:
