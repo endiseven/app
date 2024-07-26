@@ -18,6 +18,7 @@ Initial Table:
         "id": 3,
         "name": "Goku",
         "story": "Dragon Ball"
+}
 ```
 
 # How to test it
@@ -29,6 +30,25 @@ With Docker installed in the system...
 Run ``` docker-compose up ``` to download the already configured images of the FastApi and Mysql.
 
 (fast Api might start before mysql database is completely running, in that case, just re run ``` docker-compose up ```)
+
+Acces the server at:
+
+```
+http://localhost:8000/characters/
+```
+
+## Try something like:
+
+#### Add a character
+```
+curl -X POST http://localhost:8000/characters/ \
+     -H "Content-Type: application/json" \
+     -d '{"name":"Darth Vader","story":"Star Wars"}'\
+```
+#### Delete a character
+```
+curl -X DELETE http://localhost:8000/characters/"id"
+```
 
 
 
