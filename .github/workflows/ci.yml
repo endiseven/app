@@ -4,7 +4,7 @@ on:
   push:
     paths-ignore:
       - 'app/.github/workflows/*'
-      - 'app/app/*' 
+      - 'app/app/**' 
       - '**.md' 
       - '**.yml'
     branches:
