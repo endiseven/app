@@ -6,7 +6,7 @@ import databases
 from pydantic import BaseModel
 from typing import List
 
-DATABASE_URL = "mysql+pymysql://fastapi:fastapi@db:3306/fastapi"
+DATABASE_URL = "mysql+pymysql://fastapi:${{ secrets.DATABASE_USER_PASSWORD }}@db:3306/fastapi"
 
 Base = declarative_base()
 
