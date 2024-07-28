@@ -30,7 +30,7 @@ jobs:
       with:
         python-version: '3.x'
       
-    - name: Insert DB Name into main.py
+    - name: Insert DB User into main.py
       run: |
           sed -i 's/\$\{secrets.DATABASE_USER_PASSWORD\}/'"${{ secrets.DATABASE_USER_PASSWORD }}"'/g' main.py
       shell: bash
