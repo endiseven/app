@@ -30,10 +30,10 @@ jobs:
       with:
         python-version: '3.x'
       
-    - name: Install dependencies
+    - name: Insert DB Name into main.py
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+          sed -i 's/\$\{secrets.DB_NAME\}/'"${{ secrets.DB_NAME }}"'/g' main.py
+      shell: bash
       
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
