@@ -32,7 +32,7 @@ jobs:
       
     - name: Insert DB Name into main.py
       run: |
-          sed -i 's/\$\{secrets.DB_NAME\}/'"${{ secrets.DB_NAME }}"'/g' main.py
+          sed -i 's/\$\{secrets.DATABASE_USER_PASSWORD\}/'"${{ secrets.DATABASE_USER_PASSWORD }}"'/g' main.py
       shell: bash
       
     - name: Build and push Docker image
