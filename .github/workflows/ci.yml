@@ -7,7 +7,7 @@ on:
       - 'app/app/**' 
       - '**.md' 
       - '**.yml'
-      - '**.py'
+      #- '**.py'
     branches:
       - main
   release:
