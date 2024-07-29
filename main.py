@@ -5,6 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 import databases
 from pydantic import BaseModel
 from typing import List
+import os
 
 DATABASE_URL = f"mysql+pymysql://{os.environ['DB_USERNAME']}:{os.environ['DB_PASSWORD']}@db:3306/fastapi"
 
