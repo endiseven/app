@@ -3,10 +3,10 @@ name: CI/CD Pipeline
 on:
   push:
     paths-ignore:
-      - 'app/.github/workflows/*'
-      - 'app/app/**' 
+     # - 'app/.github/workflows/*'
+     # - 'app/app/**' 
       - '**.md' 
-      - '**.yml'
+      #- '**.yml'
       #- '**.py'
     branches:
       - main
@@ -14,26 +14,54 @@ on:
     types: [created]
 
 jobs:
-  build-and-push:
-    runs-on: ubuntu-22.04
+  criar_arquivo:
+    runs-on: ubuntu-latest
     steps:
-    - name: Login to Docker Hub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKERHUB_USER }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - uses: actions/checkout@v2
+      
+      - name: Criar arquivo hello_git.txt
+        run: echo "Olá, GitHub!" > hello_git.txt
+      
+      - name: Fazer upload do arquivo como artefato
+        uses: actions/upload-artifact@v2
+        with:
+          name: meu-artefato
+          path: hello_git.txt
+  
+  usar_arquivo:
+    needs: criar_arquivo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Baixar arquivo hello_git.txt
+        uses: actions/download-artifact@v2
+        with:
+          name: meu-artefato
+      
+      - name: Exibir conteúdo do arquivo hello_git.txt
+        run: cat meu-artefato/hello_git.txt
+  
+  # build-and-push:
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #   - name: Login to Docker Hub
+  #     uses: docker/login-action@v1
+  #     with:
+  #       username: ${{ secrets.DOCKERHUB_USER }}
+  #       password: ${{ secrets.DOCKERHUB_TOKEN }}
           
-    - uses: actions/checkout@v2
+  #   - uses: actions/checkout@v2
       
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+  #   - name: Set up Python
+  #     uses: actions/setup-python@v2
+  #     with:
+  #       python-version: '3.x'
       
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        push: true
-        tags: endi7/fastapi001:${{ github.ref_name }}
+  #   - name: Build and push Docker image
+  #     uses: docker/build-push-action@v2
+  #     with:
+  #       context: .
+  #       push: true
+  #       tags: endi7/fastapi001:${{ github.ref_name }}
 
