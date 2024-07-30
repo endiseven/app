@@ -40,7 +40,7 @@ jobs:
           name: meu-artefato
       
       - name: Exibir conteúdo do arquivo hello_git.txt
-        run: cat meu-artefato/hello_git.txt
+        run: cat hello_git.txt
   
   # build-and-push:
   #   runs-on: ubuntu-22.04
