@@ -52,7 +52,7 @@ jobs:
 
       - name: Modify yaml File
         run: |
-          sed -i "s/^tag: .*/tag: $RUN_NUMBER/" ./fastapi/values.yaml
+          sed -i "s/^      tag: .*/      tag: $RUN_NUMBER/" ./fastapi/values.yaml
 
       - name: Cat values.yaml to verify changes
         run: cat ./fastapi/values.yaml
