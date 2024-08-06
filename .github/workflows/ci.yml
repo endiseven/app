@@ -54,6 +54,9 @@ jobs:
         run: |
           sed -i "s/^tag: .*/tag: $RUN_NUMBER/" ./fastapi/values.yaml
 
+      - name: Cat values.yaml to verify changes
+        run: cat ./fastapi/values.yaml
+
       - name: Commit and Push Changes
         run: |
           git config user.name "endiseven"
