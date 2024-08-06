@@ -57,7 +57,7 @@ async def shutdown():
 # Exemplo de rota FastAPI
 @app.get("/")
 async def read_root():
-    return {"Ola": "Mundo"}
+    return {"Ola": "Compass"}
 
 # CRUD
 def create_character(db: Session, character: CharacterCreate):
