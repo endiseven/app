@@ -35,7 +35,7 @@ jobs:
        with:
          context: .
          push: true
-         tags: endi7/fastapi001:v.1.0
+         tags: endi7/fastapi001:${{ github.run_number }}
          
   alterar_tag:
     runs-on: ubuntu-latest
@@ -46,16 +46,19 @@ jobs:
           repository: endiseven/gitops
           token: ${{ secrets.GIT_OPS }}
 
+      - name: Set run number
+        run: echo "RUN_NUMBER=${{ github.run_number }}" >> $GITHUB_ENV
+
       - name: Modify yaml File
         run: |
-          sed -i 's/main/v.1.0/g' ./fastapi/values.yaml
+          sed -i "s/^tag: .*/tag: $RUN_NUMBER/" ./fastapi/values.yaml
 
       - name: Commit and Push Changes
         run: |
           git config user.name "endiseven"
           git config user.email "endi.sete@gmail.com"
           git add ./fastapi/values.yaml
-          git commit -m "Update image name in md file"
+          git commit -m "Update image name in yaml file"
           git push
 
 
